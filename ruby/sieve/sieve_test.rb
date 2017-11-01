@@ -10,25 +10,25 @@ class SieveTest < Minitest::Test
   end
 
   def test_find_first_prime
-    skip
+    #skip
     expected = [2]
     assert_equal expected, Sieve.new(2).primes
   end
 
   def test_find_primes_up_to_10
-    skip
+    #skip
     expected = [2, 3, 5, 7]
     assert_equal expected, Sieve.new(10).primes
   end
 
   def test_limit_is_prime
-    skip
+    #skip
     expected = [2, 3, 5, 7, 11, 13]
     assert_equal expected, Sieve.new(13).primes
   end
 
   def test_find_primes_up_to_1000
-    skip
+    #skip
     expected = [
       2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59,
       61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139,
@@ -62,7 +62,7 @@ class SieveTest < Minitest::Test
   # http://ruby-doc.org/docs/ruby-doc-bundle/UsersGuide/rg/constants.html
 
   def test_bookkeeping
-    skip
+    #skip
     assert_equal 1, BookKeeping::VERSION
   end
 end
