@@ -2,25 +2,14 @@ module BookKeeping; VERSION = 1; end
 
 class Sieve
   def initialize(number)
-    if number >= 2 
-      @primes = [*2..number]
-    else
-      @primes = []
-    end
+    @numbers = [nil, nil, *2..number]
+    @number = number
   end
 
   def primes
-    index = 0
-    if @primes.length == 0
-      return []
-    else
-      while @primes[index]**2 <= @primes.last
-        prime = @primes[index]
-        @primes = @primes.select { |num| num == prime || num%prime != 0 }
-        index += 1
-      end
-    @primes
+  (2..Math.sqrt(@number)).each do |num|
+    (num**2..@number).step(num){|cut| @numbers[cut] = nil}  if @numbers[num]
     end
+  @numbers.compact
   end
-  
 end
