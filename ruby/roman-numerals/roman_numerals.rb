@@ -1,6 +1,6 @@
 module BookKeeping; VERSION = 2; end
 
-class Fixnum
+module RomanNumeral
   
   RN = {
       1 => "I",
@@ -30,4 +30,7 @@ class Fixnum
     result
   end
   
+
+  Integer.include RomanNumeral
+
 end
