@@ -1,20 +1,23 @@
-class Clock
+class Clock 
     def initialize(args)
-        @hour = args[:hour] || 0
         @minute = args[:minute] || 0
-        time_division
-    end
+        @hour = args[:hour] || 0
+        seconds = @minute*60 + @hour*3600
+        now = Time.now
+        midnight = Time.new(now.year, now.month, now.day, 0, 0, 0)
+        @time = Time.at(midnight.to_i + seconds)
+      end
 
     def to_s
-        @time = "#{@hour_string}:#{@minute_string}"
+        @time.strftime("%H:%M")
     end
-    
+
     def hour
-        @hour_string.to_i
+        @time.strftime("%H").to_i
     end
 
     def minute
-        @minute_string.to_i
+        @time.strftime("%M").to_i
     end
 
     def +(other)
@@ -28,20 +31,4 @@ class Clock
     def ==(other)
         @hour == other.hour && @minute == other.minute        
     end
-
-    private
-    
-    def time_division
-        time_division = @minute.divmod(60.0)
-        @hour += time_division.first.to_i
-        @minutes = time_division.last.to_i
-        to_hour
-    end
-
-    def to_hour
-        hours = @hour%24
-        @hour_string = "%.2d" % hours
-        @minute_string = "%.2d" % @minutes
-    end
-
 end
