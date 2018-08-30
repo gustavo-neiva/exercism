@@ -1,34 +1,41 @@
 class Clock 
+
+    attr_reader :daily_minutes
+
     def initialize(args)
-        @minute = args[:minute] || 0
-        @hour = args[:hour] || 0
-        seconds = @minute*60 + @hour*3600
-        now = Time.now
-        midnight = Time.new(now.year, now.month, now.day, 0, 0, 0)
-        @time = Time.at(midnight.to_i + seconds)
-      end
+        @daily_minutes = (args[:minute] || 0) + (args[:hour] || 0) * 60
+        resolve_time
+    end
 
     def to_s
-        @time.strftime("%H:%M")
-    end
-
-    def hour
-        @time.strftime("%H").to_i
-    end
-
-    def minute
-        @time.strftime("%M").to_i
+        hours =  "%.2d" % @daily_minutes.divmod(60).first
+        minutes = "%.2d" % @daily_minutes.divmod(60).last
+        "#{hours}:#{minutes}"
     end
 
     def +(other)
-        Clock.new({hour: @hour + other.hour, minute: @minute + other.minute})
+        Clock.new({minute: @daily_minutes + other.daily_minutes})
     end
 
     def -(other)
-        Clock.new({hour: @hour - other.hour, minute: @minute - other.minute})
+        Clock.new({minute: @daily_minutes - other.daily_minutes})
     end
 
     def ==(other)
-        @hour == other.hour && @minute == other.minute        
+        @daily_minutes == other.daily_minutes
+    end
+
+    private 
+
+    def resolve_time
+        if @daily_minutes >= 0
+            while @daily_minutes > 1439
+                @daily_minutes -= 1440
+            end
+        else
+            while @daily_minutes < 0
+                @daily_minutes += 1440
+            end
+        end
     end
 end
