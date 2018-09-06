@@ -25,18 +25,4 @@ class Clock
     def ==(other)
         @daily_minutes == other.daily_minutes
     end
-
-    private 
-
-    # def resolve_time
-    #     if @daily_minutes >= 0
-    #         while @daily_minutes > 1439
-    #             @daily_minutes -= 1440
-    #         end
-    #     else
-    #         while @daily_minutes < 0
-    #             @daily_minutes += 1440
-    #         end
-    #     end
-    # end
 end
