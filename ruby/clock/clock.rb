@@ -4,14 +4,11 @@ class Clock
 
     def initialize(minute: 0, hour: 0)
         @daily_minutes = (minute + hour * 60).modulo(1440)
-        while @daily_minutes > 1439
-            @daily_minutes -= 1440
-        end
     end
 
     def to_s
-        divmod = @daily_minutes.divmod(60).map { |time| "%.2d" % time }     
-        "#{divmod.first}:#{divmod.last}"
+        divmod = @daily_minutes.divmod(60)    
+        format("%.2d:%.2d", divmod.first, divmod.last)
     end
 
     def +(other)
