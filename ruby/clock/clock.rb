@@ -1,14 +1,15 @@
 class Clock 
+    MINUTES_PER_HOUR = 60
+    MINUTES_PER_DAY = 1440
 
     attr_reader :daily_minutes
 
     def initialize(minute: 0, hour: 0)
-        @daily_minutes = (minute + hour * 60).modulo(1440)
+        @daily_minutes = (minute + hour * MINUTES_PER_HOUR).modulo(MINUTES_PER_DAY)
     end
 
-    def to_s
-        divmod = @daily_minutes.divmod(60)    
-        format("%.2d:%.2d", divmod.first, divmod.last)
+    def to_s 
+        format("%.2d:%.2d", *@daily_minutes.divmod(MINUTES_PER_HOUR))
     end
 
     def +(other)
@@ -20,6 +21,6 @@ class Clock
     end
 
     def ==(other)
-        @daily_minutes == other.daily_minutes
+        @daily_minutes.eql? other.daily_minutes
     end
 end
