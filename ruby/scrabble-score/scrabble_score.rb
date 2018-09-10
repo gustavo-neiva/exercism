@@ -13,8 +13,7 @@ class Scrabble
     end
 
     def self.score(string)
-        a = Scrabble.new(string)
-        a.score
+        Scrabble.new(string).score
     end
 
 end
