@@ -8,9 +8,8 @@ class Clock
         @daily_minutes = (minute + hour * MINUTES_PER_HOUR).modulo(MINUTES_PER_DAY)
     end
 
-    def to_s
-        divmod = @daily_minutes.divmod(MINUTES_PER_HOUR)    
-        format("%.2d:%.2d", divmod.first, divmod.last)
+    def to_s 
+        format("%.2d:%.2d", *@daily_minutes.divmod(MINUTES_PER_HOUR))
     end
 
     def +(other)
