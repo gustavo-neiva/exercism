@@ -1,2 +1,2 @@
-def hello(name=''):
-    pass
+def hello():
+    return ('Hello, World!')
