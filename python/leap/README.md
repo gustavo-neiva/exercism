@@ -1,18 +1,30 @@
-# Hello World
+# Leap
 
-The classical introductory exercise. Just say "Hello, World!".
+Given a year, report if it is a leap year.
 
-["Hello, World!"](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program) is
-the traditional first program for beginning programming in a new language
-or environment.
+The tricky thing here is that a leap year in the Gregorian calendar occurs:
 
-The objectives are simple:
+```text
+on every year that is evenly divisible by 4
+  except every year that is evenly divisible by 100
+    unless the year is also evenly divisible by 400
+```
 
-- Write a function that returns the string "Hello, World!".
-- Run the test suite and make sure that it succeeds.
-- Submit your solution and check it at the website.
+For example, 1997 is not a leap year, but 1996 is.  1900 is not a leap
+year, but 2000 is.
 
-If everything goes well, you will be ready to fetch your first real exercise.
+If your language provides a method in the standard library that does
+this look-up, pretend it doesn't exist and implement it yourself.
+
+## Notes
+
+Though our exercise adopts some very simple rules, there is more to
+learn!
+
+For a delightful, four minute explanation of the whole leap year
+phenomenon, go watch [this youtube video][video].
+
+[video]: http://www.youtube.com/watch?v=xX96xng7sAE
 
 ## Exception messages
 
@@ -32,11 +44,11 @@ raise Exception("Meaningful message indicating the source of the error")
 
 To run the tests, run the appropriate command below ([why they are different](https://github.com/pytest-dev/pytest/issues/1629#issue-161422224)):
 
-- Python 2.7: `py.test hello_world_test.py`
-- Python 3.4+: `pytest hello_world_test.py`
+- Python 2.7: `py.test leap_test.py`
+- Python 3.4+: `pytest leap_test.py`
 
 Alternatively, you can tell Python to run the pytest module (allowing the same command to be used regardless of Python version):
-`python -m pytest hello_world_test.py`
+`python -m pytest leap_test.py`
 
 ### Common `pytest` options
 
@@ -48,7 +60,7 @@ For other options, see `python -m pytest -h`
 
 ## Submitting Exercises
 
-Note that, when trying to submit an exercise, make sure the solution is in the `$EXERCISM_WORKSPACE/python/hello-world` directory.
+Note that, when trying to submit an exercise, make sure the solution is in the `$EXERCISM_WORKSPACE/python/leap` directory.
 
 You can find your Exercism workspace by running `exercism debug` and looking for the line that starts with `Workspace`.
 
@@ -57,7 +69,7 @@ please see [Running the Tests](http://exercism.io/tracks/python/tests).
 
 ## Source
 
-This is an exercise to introduce users to using Exercism [http://en.wikipedia.org/wiki/%22Hello,_world!%22_program](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program)
+JavaRanch Cattle Drive, exercise 3 [http://www.javaranch.com/leap.jsp](http://www.javaranch.com/leap.jsp)
 
 ## Submitting Incomplete Solutions
 
