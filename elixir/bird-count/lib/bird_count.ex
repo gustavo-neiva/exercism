@@ -28,6 +28,6 @@ defmodule BirdCount do
   end
 
   def busy_days(list) do
-    Enum.count(list, fn item -> item >= 5 end)
+    Enum.count(list, &(&1 >= 5))
   end
 end
