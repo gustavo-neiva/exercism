@@ -1,18 +1,18 @@
 defmodule Username do
-  def sanitize(~c""), do: ~c""
+  def sanitize([]), do: []
 
   def sanitize([head | tail]) do
-    sanitized_head = sanitize_char(head)
-    sanitized_tail = sanitize(tail)
-    sanitized_head ++ sanitized_tail
+    sanitized_head =
+      case head do
+        char when char in ?a..?z -> [char]
+        ?_ -> [?_]
+        ?ä -> ~c"ae"
+        ?ö -> ~c"oe"
+        ?ü -> ~c"ue"
+        ?ß -> ~c"ss"
+        _ -> ~c""
+      end
+
+    sanitized_head ++ sanitize(tail)
   end
-
-  defp sanitize_char(char) when char in ?a..?z or char == ?_, do: [char]
-
-  defp sanitize_char(?ä), do: ~c"ae"
-  defp sanitize_char(?ö), do: ~c"oe"
-  defp sanitize_char(?ü), do: ~c"ue"
-  defp sanitize_char(?ß), do: ~c"ss"
-
-  defp sanitize_char(_), do: ~c""
 end
